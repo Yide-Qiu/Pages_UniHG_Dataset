@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniHG: A Large-scale Universal Heterogeneous Graph Dataset and Benchmark</title>
+    <style>
+        table {border-collapse: collapse; width: 100%; margin: 20px 0}
+        th, td {border: 1px solid #ddd; padding: 8px; text-align: left}
+        .highlight {background-color: #f0f8ff}
+    </style>
+</head>
+<body>
+    <h1>UniHG: A Large-scale Universal Heterogeneous Graph Dataset and Benchmark for Representation Learning and Cross-Domain Transferring</h1>
+    
+    <div class="authors">
+        <h2>Anonymous Authors</h2>
+        <p>Affiliation, Address<br>Contact Email</p>
+    </div>
+
+    <div class="abstract">
+        <h2>Abstract</h2>
+        <p>We present UniHG, the largest universal heterogeneous graph dataset containing 77.31M nodes and 564M edges with 2,082 relation types. Addressing three fundamental challenges in HG research—benchmark deficiency, semantic misalignment, and propagation degradation—we propose:</p>
+        <ul>
+            <li>A semantic alignment strategy projecting multi-attribute features into unified embedding space</li>
+            <li>Heterogeneous Graph Decoupling (HGD) framework with Anisotropic Feature Propagation (AFP)</li>
+        </ul>
+        <p>Extensive experiments show 28.93% accuracy improvement over SOTA methods and 11.71% NDCG@20 boost in downstream tasks. <a href="https://anonymous.4open.science/r/UniHG-AA78">Dataset & Code</a></p>
+    </div>
+
+    <div class="dataset-stats">
+        <h2>Dataset Statistics</h2>
+        <table>
+            <tr><th>Metric</th><th>UniHG</th><th>MAG240M</th><th>Amazon Review</th></tr>
+            <tr><td>Nodes</td><td>77.31M</td><td>244.16M</td><td>102.70M</td></tr>
+            <tr><td>Edges</td><td>564M</td><td>1.73B</td><td>571.54M</td></tr>
+            <tr><td>Node Types</td><td>1</td><td>3</td><td>33</td></tr>
+            <tr><td>Edge Types</td><td>2,082</td><td>3</td><td>-</td></tr>
+            <tr><td>Labels</td><td>74,666</td><td>153</td><td>-</td></tr>
+        </table>
+    </div>
+
+    <div class="results">
+    <h2>Experimental Results</h2>
+    
+    <!-- Main Node Classification Results -->
+    <h3>Node Classification Performance</h3>
+    <table>
+        <tr>
+            <th rowspan="2">Method</th>
+            <th colspan="3">UniHG-1M</th>
+            <th colspan="3">UniHG-10M</th>
+            <th colspan="3">UniHG-Full</th>
+        </tr>
+        <tr>
+            <th>Accuracy</th><th>Recall</th><th>F1</th>
+            <th>Accuracy</th><th>Recall</th><th>F1</th>
+            <th>Accuracy</th><th>Recall</th><th>F1</th>
+        </tr>
+        <tr class="highlight">
+            <td>HGD (Ours)</td>
+            <td>75.41</td><td>75.95</td><td>82.64</td>
+            <td>89.03</td><td>90.11</td><td>93.05</td>
+            <td>93.16</td><td>93.83</td><td>96.09</td>
+        </tr>
+        <tr><td>GCN</td><td>23.68</td><td>25.26</td><td>21.89</td><td>22.86</td><td>25.66</td><td>23.19</td><td>26.72</td><td>24.19</td><td>23.26</td></tr>
+        <tr><td>GAT</td><td>29.12</td><td>34.02</td><td>27.76</td><td>33.73</td><td>37.48</td><td>29.88</td><td>31.02</td><td>35.07</td><td>26.92</td></tr>
+        <tr><td>HGT</td><td>51.28</td><td>55.30</td><td>51.55</td><td>52.09</td><td>56.52</td><td>53.03</td><td>55.36</td><td>61.91</td><td>56.47</td></tr>
+        <tr><td>MTMP</td><td>47.52</td><td>47.48</td><td>60.79</td><td>59.95</td><td>61.33</td><td>72.81</td><td>65.67</td><td>66.15</td><td>67.74</td></tr>
+        <tr><td>SGC</td><td>42.56</td><td>42.11</td><td>55.12</td><td>56.32</td><td>57.78</td><td>67.95</td><td>62.15</td><td>63.88</td><td>73.21</td></tr>
+        <tr><td>SIGN</td><td>56.73</td><td>55.54</td><td>69.41</td><td>73.58</td><td>84.17</td><td>80.30</td><td>69.04</td><td>70.49</td><td>81.48</td></tr>
+        <tr><td>GAMLP</td><td>44.55</td><td>43.74</td><td>56.92</td><td>59.47</td><td>61.32</td><td>70.02</td><td>64.23</td><td>66.05</td><td>74.34</td></tr>
+    </table>
+    <p>All values in percentage (%)</p>
+
+    <!-- Ablation Study Results -->
+    <h3>Ablation Study with AFP Module</h3>
+    <table>
+        <tr>
+            <th>Method</th>
+            <th colspan="3">UniHG-1M</th>
+            <th colspan="3">UniHG-10M</th>
+            <th colspan="3">UniHG-Full</th>
+        </tr>
+        <tr>
+            <td></td><td>Acc</td><td>Rec</td><td>F1</td>
+            <td>Acc</td><td>Rec</td><td>F1</td>
+            <td>Acc</td><td>Rec</td><td>F1</td>
+        </tr>
+        <tr><td>SGC</td><td>42.56</td><td>42.11</td><td>55.12</td><td>56.32</td><td>57.78</td><td>67.95</td><td>62.15</td><td>63.88</td><td>73.21</td></tr>
+        <tr><td>SGC+AFP</td><td>44.18</td><td>42.75</td><td>57.65</td><td>64.25</td><td>65.21</td><td>76.67</td><td>69.84</td><td>71.40</td><td>81.45</td></tr>
+        <tr><td>SIGN</td><td>56.73</td><td>55.54</td><td>69.41</td><td>73.58</td><td>84.17</td><td>80.30</td><td>69.04</td><td>70.49</td><td>81.48</td></tr>
+        <tr><td>SIGN+AFP</td><td>66.69</td><td>65.27</td><td>77.16</td><td>77.52</td><td>80.18</td><td>81.38</td><td>75.45</td><td>76.42</td><td>85.71</td></tr>
+        <tr><td>GAMLP</td><td>44.55</td><td>43.74</td><td>56.92</td><td>59.47</td><td>61.32</td><td>70.02</td><td>64.23</td><td>66.05</td><td>74.34</td></tr>
+        <tr><td>GAMLP+AFP</td><td>47.24</td><td>46.80</td><td>60.85</td><td>60.99</td><td>62.70</td><td>73.38</td><td>72.89</td><td>74.95</td><td>83.51</td></tr>
+    </table>
+
+    <!-- Cross-domain Transfer Results -->
+    <h3>Cross-domain Knowledge Transfer</h3>
+    <table>
+        <tr>
+            <th>Method</th>
+            <th colspan="3">Amazon-Book</th>
+            <th colspan="3">Yelp2018</th>
+            <th colspan="3">Citeulike-a</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Prec@20</td><td>Rec@20</td><td>NDCG@20</td>
+            <td>Prec@20</td><td>Rec@20</td><td>NDCG@20</td>
+            <td>Prec@20</td><td>Rec@20</td><td>NDCG@20</td>
+        </tr>
+        <tr><td>LightGCN</td><td>0.01716</td><td>0.06191</td><td>0.04106</td><td>0.00433</td><td>0.01123</td><td>0.00849</td><td>0.02329</td><td>0.07188</td><td>0.04374</td></tr>
+        <tr><td>LightGCN+UniHG</td><td>+2.797%</td><td>+1.712%</td><td>+0.803%</td><td>+6.467%</td><td>+7.925%</td><td>+5.535%</td><td>+3.521%</td><td>+3.116%</td><td>+1.935%</td></tr>
+        <tr><td>NGCF</td><td>0.01540</td><td>0.06278</td><td>0.04142</td><td>0.00318</td><td>0.00596</td><td>0.00533</td><td>0.03992</td><td>0.11455</td><td>0.09264</td></tr>
+        <tr><td>NGCF+UniHG</td><td>+14.675%</td><td>+17.776%</td><td>+27.764%</td><td>+6.918%</td><td>+31.543%</td><td>+9.005%</td><td>+0.601%</td><td>+1.422%</td><td>+1.759%</td></tr>
+    </table>
+    </div>
+
+    <div class="conclusion">
+        <h2>Conclusion</h2>
+        <p>UniHG establishes new benchmarks for heterogeneous graph learning through:</p>
+        <ul>
+            <li>Largest universal HG dataset with Wikidata-based semantic alignment</li>
+            <li>Efficient HGD framework achieving SOTA performance</li>
+            <li>Demonstrated cross-domain transfer capabilities</li>
+        </ul>
+    </div>
+
+    <div class="references">
+        <h2>References</h2>
+        <p>1. Hu et al. (2020) Heterogeneous Graph Transformer<br>
+        2. Radford et al. (2021) CLIP<br>
+        3. Full reference list in original paper</p>
+    </div>
+</body>
+</html>
